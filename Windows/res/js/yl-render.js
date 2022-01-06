@@ -180,7 +180,7 @@ YL.render = function (data) {
           ? that.startMenu.width : clientSize.width;
         that.runtime.startMenu.height = that.runtime.desktopSize.height > that.startMenu.height && !that.runtime.isSmallScreen
           ? that.startMenu.height : that.runtime.desktopSize.height;
-
+    
         //计算磁贴尺寸
         var widthFixed = that.runtime.startMenu.width - (that.runtime.isSmallScreen ? 80 : 328);
         var groupNum = 1;//多少列
@@ -203,13 +203,13 @@ YL.render = function (data) {
         }
         that.runtime.tileSize = size;
         that.runtime.tilesWidth = (size + 4) * 6;
-
+    
         //计算桌面网格尺寸
         that.runtime.shortcutWidth = that.runtime.isSmallScreen ? 56 : 68;
         that.runtime.shortcutHeight = that.runtime.isSmallScreen ? 70 : 90;
         that.runtime.shortcutsGrid.x = parseInt(that.runtime.desktopSize.width / that.runtime.shortcutWidth);
         that.runtime.shortcutsGrid.y = parseInt(that.runtime.desktopSize.height / that.runtime.shortcutHeight);
-
+    
         //给窗体发送resize事件
         that.emitWinEvent(0, 'resize',{
           width:that.runtime.desktopSize.width,
@@ -223,7 +223,7 @@ YL.render = function (data) {
         fnResize();
         if (first)
           $(window).resize(fnResize);
-
+    
         //时钟
         if (first) {
           setInterval(function () {
@@ -240,7 +240,7 @@ YL.render = function (data) {
             that.runtime.date = myDate;
           }, 1000);
         }
-
+    
         //即将渲染
         if (first) {
           this.$nextTick(function () {
@@ -268,11 +268,11 @@ YL.render = function (data) {
                 }
               }
             }, 500);
-
+    
             $("#yl").css({ 'opacity': 1, display: "block" }); //显示
           });
         }
-
+    
         //壁纸幻灯片服务
         if (first) {
           setInterval(function () {
@@ -303,7 +303,7 @@ YL.render = function (data) {
             }
           }, 1000);
         }
-
+    
         //记录IE
         if (Yuri2.isIE()) {
           that.runtime.isIE = true;
@@ -313,7 +313,7 @@ YL.render = function (data) {
             }, 2000);
           }
         }
-
+    
         //初始化壁纸
         var img = new Image();
         var urlBg = this.configs.wallpaper;
@@ -324,10 +324,10 @@ YL.render = function (data) {
             that.backgroundToThemeColor()
           }
         };
-
+    
         //壁纸比例修正
         that.backgroundUpdateScale();
-
+    
         //自动保存服务
         if (first) {
           var lastExport = '';
@@ -344,7 +344,7 @@ YL.render = function (data) {
             }
           }, 1000);
         }
-
+    
         //F5刷新激活子页
         if (first) {
           var f5_check = function (e) {
@@ -375,7 +375,7 @@ YL.render = function (data) {
             document.attachEvent("onkeydown", f5_check);
           }
         }
-
+    
         //刷新子页的childSupport状态
         if (first) {
           setInterval(function () {
@@ -386,7 +386,7 @@ YL.render = function (data) {
             }
           }, 300);
         }
-
+    
         //自启动
         var autoRun = function () {
           var arrAutoRun = [];
@@ -411,16 +411,16 @@ YL.render = function (data) {
         if (first) YL.onReady(autoRun); else {
           autoRun()
         }
-
+    
         //社区版提示检测
         if (first && !YL.static.serialNumber) {
           YL.onReady(function () {
             setTimeout(function () {
-              YL.msg("Xianqi's Windows", 'Hello，你好，欢迎来到 Windows 小分站！<br/>个人主页：' + '<a style="color: white" target="_blank" href="http://ze520.cn/">ze520.cn </a><br />本网站 UI 由 ' + '<a style="color: white" target="_blank" href="https://ylui.yuri2.cn"> YLUI </a> 强力驱动<p>欢迎使用支付宝扫描二维码对作者进行捐赠~<br/><br/><img style="width: 100%" src="https://cdn.jsdelivr.net/gh/zhaoze-jpg/Xianqi@main/img/reward/alipay.jpg"/></p>');
+              YL.msg("Xianqi's Windows", 'Hello，你好，欢迎来到 Windows 小分站！<br/>个人主页：' + '<a style="color: white" target="_blank" href="http://lpesjy.xyz/">lpesjy.xyz </a><br />本网站 UI 由 ' + '<a style="color: white" target="_blank" href="https://ylui.yuri2.cn"> YLUI </a> 强力驱动<p>欢迎使用支付宝扫描二维码对作者进行捐赠~<br/><br/><img style="width: 100%" src="https://i.postimg.cc/CxfVDBH6/image.jpg"/></p>');
             }, 1500)
           });
         }
-
+    
         this.ready = true;
       },
       setWithID: function (obj, val, prefix, ran) {
@@ -459,7 +459,7 @@ YL.render = function (data) {
         setTimeout(function () {
           that.runtime.shortcutsShow = true;
         }, 200);
-
+    
         //刷新customTileRandomToken
         that.runtime.customTileRandomToken = YL.util.randInt(1000, 9999);
       },
@@ -469,12 +469,12 @@ YL.render = function (data) {
         if (!options) {
           options = {};
         } //容错
-
+    
         //打开app
         var app = (typeof id === 'string') ? this.apps[id] : id;
         var appMerge = Yuri2.jsonMerge(app, options);
         this.hideOpens();
-
+    
         //单例检测
         if (appMerge.single) {
           for (var i in this.wins) {
@@ -486,7 +486,7 @@ YL.render = function (data) {
             }
           }
         }
-
+    
         if (!appMerge.url) {
           return;
         }//空url返回
@@ -494,7 +494,7 @@ YL.render = function (data) {
           YL.util.simpleMsg(Yuri2.template(YL.lang("MaxWinsReached"), this.configs.openMax));
           return;
         }
-
+    
         //隐藏菜单和操作中心
         // appMerge.plugin || this.runtime.winOpened++;//计数
         this.runtime.winOpenCounter++;//计数
@@ -613,12 +613,12 @@ YL.render = function (data) {
               ContextMenu._removeContextMenu();//关闭右键菜单
             }
           }, winID);
-
+    
           //激活刚打开的iframe
           if (!win.min) {
             ifr.focus();
           }
-
+    
           // 加载完毕关闭封面
           var created = new Date().getTime();
           var closeInit = function () {
@@ -636,17 +636,17 @@ YL.render = function (data) {
             ifr.onload = closeInit;
           }
         });
-
+    
         //如果是手机屏幕，最大化
         if (that.runtime.isSmallScreen && !win.plugin && win.resizable) {
           that.winMaximize(winID);
         }
-
+    
         // 超时关闭封面
         setTimeout(function () {
           win.init = false;
         }, 10000);
-
+    
         return winID;
       },
       tileStyle: function (tile) {
@@ -659,7 +659,7 @@ YL.render = function (data) {
         var h = tile.h;
         var min = Math.min(w, h) / 1.5;
         var size = sizeRel(min);
-
+    
         return {
           width: size + 'px',
           height: size + 'px',
@@ -687,7 +687,7 @@ YL.render = function (data) {
         if (!win) {
           return
         }
-
+    
         this.$delete(this.wins, id);
         this.emitWinEvent(id, 'close', null);
         this.findNewActive();
@@ -761,7 +761,7 @@ YL.render = function (data) {
           return p;
         }; //该函数从触屏或鼠标点击获取pageX，pageY
         var point = fnGetPagePointFromEvent(e);
-
+    
         //拖动逻辑
         var that = this;
         var win = this.wins[id];
@@ -843,7 +843,7 @@ YL.render = function (data) {
         };
         $(document).mouseup(fnMouseUp);
         $(document).mousemove(fnMouseMove);
-
+    
       },
       winSetActive: function (id) {
         var now = Date.now();
@@ -1121,7 +1121,7 @@ YL.render = function (data) {
       },
       drawerStyle: function () {
         var top = 0, left = 0;
-
+    
         return {
           'top': top + 'px',
           'left': left + 'px',
@@ -1320,7 +1320,7 @@ YL.render = function (data) {
                 }
               }
             }
-
+    
             if (dragTo.over) {
               //拖动覆盖
               var sOn = that.shortcuts[dragTo.id];
@@ -1356,9 +1356,9 @@ YL.render = function (data) {
                 });
                 that.shortcuts.splice(id, 1)
               }
-
+    
             }
-
+    
           } else {
             //抽屉内拖动(移动一定的距离就算是拖出去)
             if (that.shortcutCutOutFromDrawer(s)) {
@@ -1372,7 +1372,7 @@ YL.render = function (data) {
           s.drag.moved = 0;
           s.drag.left = s.drag.top = 0;
           that.runtime.shortcutInsert = that.runtime.shortcutOver = null;
-
+    
           //事件解绑
           if (isMouse) {
             $(document).unbind('mousemove', fnMouseMove);
@@ -1381,7 +1381,7 @@ YL.render = function (data) {
             $(document).unbind('touchmove', fnMouseMove);
             $(document).unbind('touchend', fnMouseUp);
           }
-
+    
         };
         var fnMouseMove = function (e) {
           if (!s.drag.mDown) return;
@@ -1400,12 +1400,12 @@ YL.render = function (data) {
             that.runtime.shortcutInsert = dragTo.id;
           else
             that.runtime.shortcutInsert = null;
-
+    
           if (dragTo.over) //拖动覆盖的视觉提示
             that.runtime.shortcutOver = dragTo.id;
           else
             that.runtime.shortcutOver = null;
-
+    
         };
         if (isMouse) {
           $(document).mouseup(fnMouseUp);
@@ -1598,7 +1598,7 @@ YL.render = function (data) {
             tile.h = 4;
           }, !YL.static.changeable],
         ];
-
+    
         //处理磁贴转移到其他组的逻辑
         if (that.tiles.length > 1) {
           var moveMenu = [];
@@ -1611,11 +1611,11 @@ YL.render = function (data) {
               movedTile.x = 0;
               that.tiles[n].data.push(movedTile);
             }, !YL.static.changeable])
-
+    
           });
           menu.push([YL.util.getStrFa('cut') + YL.lang("MoveTo"), moveMenu])
         }
-
+    
         menu.push("|");
         menu.push([YL.util.getStrFa('remove') + YL.lang("Delete"), function () {
           YL.util.simpleConfirm(Yuri2.template(YL.lang("DeleteTileConfirm"), tile.title), function () {
@@ -1640,7 +1640,7 @@ YL.render = function (data) {
         });
         var itemId = data.id;
         var menu = [];
-
+    
         if (item.app && !item.children) {
           menu = [
             that.contextMenuOpen(item),
@@ -1711,7 +1711,7 @@ YL.render = function (data) {
                 fatherA[idA] = childB;
                 fatherB[idB] = childA;
               } catch (e) {
-
+    
               }
             }
             , !YL.static.changeable]);
@@ -1998,7 +1998,7 @@ YL.render = function (data) {
           var left;
           left = 48 + (this.runtime.menuOnLeft ? width : 0);
         }
-
+    
         return {
           left: this.runtime.isSmallScreen ? left + "px" : '312px',
         }
